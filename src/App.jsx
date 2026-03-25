@@ -242,10 +242,10 @@ export default function App() {
     strategy: 96,
   });
 
-const influenced = useMemo(() => {
+  const influenced = useMemo(() => {
     const c = controls
     const c = controls;
-return {
+    return {
       brand: Math.round(c.brand*0.6 + c.strategy*0.15 + c.creative*0.15 + c.web*0.1),
       web: Math.round(c.web*0.5 + c.brand*0.2 + c.strategy*0.15 + c.creative*0.15),
       ecommerce: Math.round(c.ecommerce*0.45 + c.web*0.2 + c.strategy*0.15 + c.growth*0.2),
@@ -323,7 +323,7 @@ return {
               <div className="alza-text">alzarosa</div>
               <div className="alza-sub">LLC</div>
             </div>
-</div>
+          </div>
           <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
             {[[Orbit,'#67e8f9','Dynamic interface motion'],[Workflow,'#f0abfc','Layered growth architecture'],[ShieldCheck,'#fda4af','Precision-led execution']].map(([Icon,color,text],i)=><div key={i} style={{borderRadius:18,border:'1px solid rgba(255,255,255,.10)',background:'rgba(255,255,255,.04)',padding:16}}><Icon size={20} color={color} style={{marginBottom:12}}/><div style={{fontSize:14,color:'rgba(255,255,255,.80)'}}>{text}</div></div>)}
 
@@ -372,8 +372,8 @@ return {
 
           <div className="hero-panel">
             <div className="hero-panel-overlay" />
-</div>
-</div>
+          </div>
+        </div>
       </div>
     </section>
       </section>
