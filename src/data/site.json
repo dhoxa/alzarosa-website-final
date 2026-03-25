@@ -1,10 +1,4 @@
 {
-  "hero": {
-    "title": "High-tech brand systems built to create instant impact.",
-    "description": "We build next-generation brand experiences through strategy, identity, web development, and performance marketing.",
-    "ctaPrimary": "Start a Project",
-    "ctaSecondary": "View Work"
-  },
  "clients": [
   { "name": "AM Clothes", "logo": "/logos/am.png" },
   { "name": "Jack & Jones", "logo": "/logos/jj.png" },
