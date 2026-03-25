@@ -5,32 +5,26 @@
     "ctaPrimary": "Start a Project",
     "ctaSecondary": "View Work"
   },
-  "clients": [
-    {
-      "name": "AM Clothes",
-      "logo": "/logos/am.png"
-    },
-    {
-      "name": "Jack & Jones",
-      "logo": "/logos/jj.png"
-    },
-    {
-      "name": "EBC Cosmetics",
-      "logo": "/logos/ebc.png"
-    }
-  ],
-  "services": [
-    {
-      "title": "Brand Strategy",
-      "desc": "Positioning, identity systems, and growth frameworks."
-    },
-    {
-      "title": "Web Development",
-      "desc": "High-performance websites and digital platforms."
-    },
-    {
-      "title": "Performance Marketing",
-      "desc": "Meta, Google, TikTok growth systems."
-    }
-  ]
-}
+ "clients": [
+  { "name": "AM Clothes", "logo": "/logos/am.png" },
+  { "name": "Jack & Jones", "logo": "/logos/jj.png" },
+  { "name": "EBC Cosmetics", "logo": "/logos/ebc.png" },
+  { "name": "Temaj Qeramike", "logo": "/logos/temaj-qeramike.png" },
+  { "name": "Spirit of Drini", "logo": "/logos/spirit-of-drini.png" },
+  { "name": "Temaj WinDoor", "logo": "/logos/temaj-windoor.png" },
+  { "name": "Ephesus Travel", "logo": "/logos/ephesus-travel.png" },
+  { "name": "EQ", "logo": "/logos/eq.png" },
+  { "name": "EMO", "logo": "/logos/emo.png" },
+  { "name": "Green Arrow", "logo": "/logos/green-arrow.png" },
+  { "name": "Zani", "logo": "/logos/zani.png" },
+  { "name": "Collagen Prime", "logo": "/logos/collagen-prime.png" },
+  { "name": "Patos", "logo": "/logos/patos.png" },
+  { "name": "ZZ Travel", "logo": "/logos/zz-travel.png" },
+  { "name": "Sun Snow", "logo": "/logos/sun-snow.png" },
+  { "name": "Frutti", "logo": "/logos/frutti.png" },
+  { "name": "UPay", "logo": "/logos/upay.png" },
+  { "name": "ADE Skincare", "logo": "/logos/ade-skincare.png" },
+  { "name": "Monun Garden", "logo": "/logos/monun-garden.png" },
+  { "name": "ABO-SI", "logo": "/logos/abo-si.png" },
+  { "name": "Comfort Clima", "logo": "/logos/comfort-clima.png" }
+]
