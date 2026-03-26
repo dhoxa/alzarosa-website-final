@@ -1,164 +1,135 @@
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Sparkles,
-  Mail,
-  Phone,
-  Megaphone,
-  PenTool,
-  Globe,
-  Layers3,
-  ShoppingBag,
-  BarChart3,
-  Store,
-  Building2,
-  Plane,
-  HeartPulse,
-  Package2,
-  UtensilsCrossed,
-  ScanSearch,
-  Target,
-  Palette,
-  Rocket,
-  LineChart as LineChartIcon,
-  Disc3,
-  Play,
-  Radio,
-} from "lucide-react";
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  LineChart as ReLineChart,
-  Line,
-  RadarChart,
-  Radar,
+  import { motion } from "framer-motion";
+  import {
+    ArrowRight,
+    Sparkles,
+    Mail,
+    Phone,
+    Megaphone,
+    PenTool,
+    Globe,
+    Layers3,
+    ShoppingBag,
+    BarChart3,
+    Store,
+    Building2,
+    Plane,
+    HeartPulse,
+    Package2,
+    UtensilsCrossed,
+    ScanSearch,
+    Target,
+    Palette,
+    Rocket,
+    LineChart as LineChartIcon,
+    Disc3,
+    Play,
+    Radio,
+  } from "lucide-react";
+  import {
+    ResponsiveContainer,
+    AreaChart,
+    Area,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+    Tooltip,
+    LineChart as ReLineChart,
+    Line,
+    RadarChart,
+    Radar,
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
 } from "recharts";
 import data from "./data/site.json";
-
 const services = [
   {
-    title: "Marketing Strategy",
+    title: "Brand Strategy",
     description:
-      "Strategic planning, campaign architecture, audience direction, and growth systems built for measurable business momentum.",
-    icon: Megaphone,
-    badges: ["Meta", "Google", "TikTok"],
-  },
-  {
-    title: "Branding & Brand Identity",
-    description:
-      "Naming, positioning, visual systems, and identity frameworks designed to make brands clearer and more distinctive.",
+      "Positioning, identity systems, and brand architecture built to make
+ambitious companies clearer, sharper, and more competitive.",
     icon: PenTool,
-    badges: ["Naming", "Identity", "Positioning"],
+    badges: ["Positioning", "Identity", "Architecture"],
   },
   {
     title: "Web Development",
     description:
-      "Modern digital experiences, business websites, and landing pages created to combine speed, precision, and credibility.",
-    icon: Globe,
-    badges: ["UX/UI", "Frontend", "Landing Pages"],
-  },
-  {
-    title: "Product Development",
-    description:
-      "Offer structure, launch readiness, product framing, and market-facing logic for stronger commercial clarity.",
-    icon: Layers3,
-    badges: ["Offer", "Launch", "Structure"],
-  },
-  {
-    title: "E-commerce Strategy",
-    description:
-      "Store architecture, journey design, product presentation, and optimization across commerce systems.",
-    icon: ShoppingBag,
-    badges: ["Shopify", "Conversion", "Catalog"],
+      "High-performance websites, UX/UI systems, and custom digital builds
+designed for credibility, speed, and conversion.",
+icon: Globe,
+    badges: ["UX/UI", "Frontend", "Custom Build"],
   },
   {
     title: "Performance Marketing",
     description:
-      "Paid media systems for acquisition, sharper messaging, and measurable commercial lift.",
-    icon: BarChart3,
-    badges: ["Paid Media", "Testing", "Scaling"],
+      "Paid media systems across Meta, Google, and TikTok focused on scalable
+growth, sharper messaging, and measurable lift.",
+    icon: Megaphone,
+    badges: ["Meta", "Google", "TikTok"],
   },
   {
-    title: "Music Marketing",
+    title: "E-commerce Strategy",
     description:
-      "Targeted campaigns for artists, singles, and album cycles across streaming, social, and paid media.",
-    icon: Disc3,
+      "Store architecture, offer logic, conversion direction, and product
+presentation designed to improve digital commerce performance.",
+    icon: ShoppingBag,
+    badges: ["Strategy", "Shopify", "Conversion"],
+  },
+  {
+    title: "Product Development",
+    description:
+      "Launch readiness, product framing, and market-facing logic developed to
+improve clarity, structure, and commercial traction.",
+    icon: Layers3,
+    badges: ["Offers", "Launch", "Systems"],
+  },{
+    title: "Music & Film Rollout",
+    description:
+      "Album rollout strategy, artist positioning, visual campaign direction,
+editorial pitching, release sequencing, and platform execution.",
+icon: Disc3,
     badges: ["Spotify", "YouTube", "TikTok"],
   },
-  {
-    title: "Song & Album Rollout",
-    description:
-      "Teaser strategy, content sequencing, release timing, platform coordination, and post-release momentum systems.",
-    icon: Rocket,
-    badges: ["Singles", "Albums", "Rollout"],
-  },
 ];
-
 const sectors = [
   { title: "Retail & Fashion", icon: Store },
-  { title: "Construction & Home Improvement", icon: Building2 },
-  { title: "E-commerce", icon: ShoppingBag },
-  { title: "Travel & Hospitality", icon: Plane },
-  { title: "Health & Beauty", icon: HeartPulse },
+  { title: "Cosmetics & Beauty", icon: HeartPulse },
+  { title: "Travel & Tourism", icon: Plane },
+  { title: "Construction & Materials", icon: Building2 },
+  { title: "Music & Entertainment", icon: Radio },
   { title: "Consumer Brands", icon: Package2 },
   { title: "Food & Beverage", icon: UtensilsCrossed },
-  { title: "Music & Entertainment", icon: Radio },
+  { title: "E-commerce", icon: ShoppingBag },
 ];
-
 const processSteps = [
-  {
-    title: "Diagnose",
-    description: "We identify brand, market, and execution gaps.",
-    icon: ScanSearch,
-  },
-  {
-    title: "Position",
-    description: "We define the strategic angle and message architecture.",
-    icon: Target,
-  },
-  {
-    title: "Design",
-    description: "We shape identity, content direction, and interface systems.",
-    icon: Palette,
-  },
-  {
-    title: "Build",
-    description: "We develop the assets, website, and rollout structure.",
-    icon: Rocket,
-  },
-  {
-    title: "Scale",
-    description: "We optimize campaigns, funnels, and performance over time.",
-    icon: LineChartIcon,
-  },
+  { title: "Diagnose", description: "We identify positioning, brand, and
+execution gaps.", icon: ScanSearch },
+  { title: "Position", description: "We define the strategic angle and
+commercial message architecture.", icon: Target },
+  { title: "Design", description: "We shape identity, content direction, and
+interface systems.", icon: Palette },
+  { title: "Build", description:
+"We develop the website, assets, campaigns, and rollout structure.", icon:
+Rocket },
+  { title: "Scale", description: "We optimize growth systems and performance
+over time.", icon: LineChartIcon },
 ];
-
 const momentumData = [
-  { name: "W1", growth: 26, rollout: 18 },
-  { name: "W2", growth: 34, rollout: 28 },
-  { name: "W3", growth: 48, rollout: 42 },
-  { name: "W4", growth: 62, rollout: 54 },
-  { name: "W5", growth: 78, rollout: 72 },
-  { name: "W6", growth: 92, rollout: 88 },
+  { name: "W1", growth: 22, rollout: 14 },
+  { name: "W2", growth: 36, rollout: 28 },
+  { name: "W3", growth: 48, rollout: 41 },
+  { name: "W4", growth: 64, rollout: 55 },
+  { name: "W5", growth: 82, rollout: 71 },
+  { name: "W6", growth: 96, rollout: 88 },
 ];
-
 const releaseWaveData = [
   { name: "Tease", value: 18 },
-  { name: "Reveal", value: 42 },
+  { name: "Reveal", value: 44 },
   { name: "Launch", value: 96 },
-  { name: "Push", value: 74 },
-  { name: "Sustain", value: 58 },
+  { name: "Push", value: 72 },
+  { name: "Sustain", value: 54 },
 ];
-
 function AlzaLogo() {
   return (
     <div className="alza-logo-wrap">
@@ -171,32 +142,26 @@ function AlzaLogo() {
         <div className="alza-sub">LLC</div>
       </div>
     </div>
-  );
-}
-
+); }
 function ClientTile({ client }) {
   const [failed, setFailed] = useState(false);
-
   return (
     <div className="client-marquee-item">
       <div className="client-card">
         <div className="client-card-inner">
           {client.logo && !failed ? (
             <img
-              src={client.logo}
-              alt={client.name}
-              style={{ maxWidth: "140px", maxHeight: "68px", objectFit: "contain" }}
-              onError={() => setFailed(true)}
-            />
-          ) : (
-            <span>{client.name}</span>
-          )}
-        </div>
+"contain" }}
+  src={client.logo}
+  alt={client.name}
+  style={{ maxWidth: "140px", maxHeight: "68px", objectFit:
+  onError={() => setFailed(true)}
+/>
+):( <span>{client.name}</span>
+)} </div>
       </div>
     </div>
-  );
-}
-
+); }
 export default function App() {
   const [controls, setControls] = useState({
     brand: 92,
@@ -205,20 +170,24 @@ export default function App() {
     growth: 94,
     creative: 91,
     strategy: 96,
-  });
-
+});
   const influenced = useMemo(() => {
     const c = controls;
     return {
-      brand: Math.round(c.brand * 0.6 + c.strategy * 0.15 + c.creative * 0.15 + c.web * 0.1),
-      web: Math.round(c.web * 0.5 + c.brand * 0.2 + c.strategy * 0.15 + c.creative * 0.15),
-      ecommerce: Math.round(c.ecommerce * 0.45 + c.web * 0.2 + c.strategy * 0.15 + c.growth * 0.2),
-      growth: Math.round(c.growth * 0.45 + c.strategy * 0.2 + c.web * 0.1 + c.brand * 0.1 + c.ecommerce * 0.15),
-      creative: Math.round(c.creative * 0.45 + c.brand * 0.25 + c.strategy * 0.2 + c.web * 0.1),
-      strategy: Math.round(c.strategy * 0.45 + c.brand * 0.15 + c.growth * 0.2 + c.web * 0.1 + c.ecommerce * 0.1),
+      brand: Math.round(c.brand * 0.6 + c.strategy * 0.15 + c.creative * 0.15 +
+c.web * 0.1),
+      web: Math.round(c.web * 0.5 + c.brand * 0.2 + c.strategy * 0.15 +
+c.creative * 0.15),
+      ecommerce: Math.round(c.ecommerce * 0.45 + c.web * 0.2 + c.strategy *
+0.15 + c.growth * 0.2),
+      growth: Math.round(c.growth * 0.45 + c.strategy * 0.2 + c.web * 0.1 +
+c.brand * 0.1 + c.ecommerce * 0.15),
+      creative: Math.round(c.creative * 0.45 + c.brand * 0.25 + c.strategy *
+0.2 + c.web * 0.1),
+      strategy: Math.round(c.strategy * 0.45 + c.brand * 0.15 + c.growth * 0.2
++ c.web * 0.1 + c.ecommerce * 0.1),
     };
   }, [controls]);
-
   const radarData = [
     { subject: "Brand", value: influenced.brand },
     { subject: "Web", value: influenced.web },
@@ -226,8 +195,7 @@ export default function App() {
     { subject: "Growth", value: influenced.growth },
     { subject: "Creative", value: influenced.creative },
     { subject: "Strategy", value: influenced.strategy },
-  ];
-
+];
   const sliders = [
     { key: "brand", label: "Brand" },
     { key: "web", label: "Web" },
@@ -235,28 +203,23 @@ export default function App() {
     { key: "growth", label: "Growth" },
     { key: "creative", label: "Creative" },
     { key: "strategy", label: "Strategy" },
-  ];
-
+];
   return (
     <div className="app-shell">
       <header className="site-header">
         <div className="container header-row">
           <AlzaLogo />
-
           <nav className="desktop-nav">
-            <a href="#about">About</a>
+             <a href="#about">About</a>
             <a href="#services">Services</a>
             <a href="#sectors">Sectors</a>
             <a href="#clients">Clients</a>
             <a href="#contact">Contact</a>
-          </nav>
-
+</nav>
           <a href="#contact" className="header-cta">
             Start a Project
-          </a>
-        </div>
-      </header>
-
+</a> </div>
+</header>
       <section className="hero-section">
         <div className="container hero-grid">
           <motion.div
@@ -268,27 +231,25 @@ export default function App() {
               <Sparkles size={14} />
               Intelligent Creative Systems
             </div>
-
             <div style={{ height: 24 }} />
-
             <h1 className="hero-title">
-              {data.hero.title.split(" create ")[0]}
+              High-tech brand systems built to
               <span>create instant impact.</span>
-            </h1>
-
-            <p className="hero-copy">{data.hero.description}</p>
-
+</h1>
+            <p className="hero-copy">
+              Alzarosa combines strategy, identity, web development,
+performance marketing,
+              and cultural rollout systems into one modern execution layer.
+</p>
             <div className="hero-actions">
               <a href="#contact" className="btn-primary">
-                {data.hero.ctaPrimary}
+                Start a Project
                 <ArrowRight size={16} />
               </a>
               <a href="#clients" className="btn-secondary">
-                {data.hero.ctaSecondary}
-              </a>
-            </div>
+                View Work
+</a> </div>
           </motion.div>
-
           <motion.div
             className="hero-panel"
             initial={{ opacity: 0, scale: 0.97 }}
@@ -298,8 +259,7 @@ export default function App() {
             <div className="hero-panel-overlay" />
           </motion.div>
         </div>
-      </section>
-
+</section>
       <section className="section-shell-wrap" id="about">
         <div className="section-accent accent-cyan" />
         <div className="section-shell">
@@ -307,65 +267,53 @@ export default function App() {
             <div>
               <div className="eyebrow">About</div>
               <div style={{ height: 16 }} />
-              <h2>
-                A modern agency model built for sharper positioning and stronger
-                execution.
-              </h2>
-
+              <h2>A modern agency model built for sharper positioning and
+stronger execution.</h2>
               <div className="stack-cards">
                 <div className="text-card">
                   We help brands look more advanced, more relevant, and more
-                  convincing from the first interaction.
+convincing from the first interaction.
                 </div>
                 <div className="text-card">
-                  From visual systems to websites, campaigns, content direction,
-                  and rollout logic, every layer is designed to support growth.
+                  From visual systems to websites, campaigns, content
+direction, and rollout logic, every layer is designed to support growth.
                 </div>
                 <div className="text-card">
                   The result is a cleaner, stronger, and more intelligent
-                  digital presence for ambitious businesses and brands.
+digital presence for ambitious businesses and brands.
                 </div>
               </div>
-            </div>
-
+</div>
             <div className="about-card">
               <div className="card-head">
-                <div>
-                  <div className="micro-label">System Snapshot</div>
-                  <div className="card-title">Brand × Interface × Growth</div>
+<div>
+<div className="micro-label">System Snapshot</div>
+<div className="card-title">Brand × Interface × Growth</div>
                 </div>
               </div>
-
               <div style={{ height: 24 }} />
-
               <div className="text-card">
-                Strategy, identity, web experiences, performance systems,
-                e-commerce thinking, and rollout execution in one integrated
-                structure.
+                Strategy, identity, web experiences, performance systems, e-
+commerce thinking, and rollout execution in one integrated structure.
               </div>
             </div>
           </div>
         </div>
       </section>
-
       <section className="section-shell-wrap" id="services">
         <div className="section-accent accent-blue" />
         <div className="section-shell">
           <div className="eyebrow">Services</div>
           <div style={{ height: 16 }} />
-          <h2>
-            Integrated capabilities built for brand growth and execution
-            precision.
-          </h2>
+          <h2>Integrated capabilities built for brand growth and execution
+precision.</h2>
           <p style={{ maxWidth: 760, marginTop: 20 }}>
-            Strategy, identity, digital experiences, performance systems,
-            e-commerce, and rollout architecture in one modern structure.
-          </p>
-
+            Strategy, identity, digital experiences, performance systems, e-
+commerce, and rollout architecture in one modern structure.
+</p>
           <div className="service-grid">
             {services.map((service, index) => {
               const Icon = service.icon;
-
               return (
                 <motion.div
                   key={service.title}
@@ -382,41 +330,33 @@ export default function App() {
                       </div>
                       <div className="service-num">0{index + 1}</div>
                     </div>
-
                     <h3>{service.title}</h3>
                     <p>{service.description}</p>
-
                     <div className="badge-row">
                       {service.badges.map((badge) => (
                         <span key={badge} className="badge">
                           {badge}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell-wrap">
-        <div className="section-accent accent-pink" />
-        <div className="section-shell">
-          <div className="momentum-grid">
-            <div>
-              <div className="eyebrow">Momentum</div>
-              <div style={{ height: 16 }} />
-              <h2>
-                Visual systems that turn campaigns and launches into visible
-                movement.
-              </h2>
-              <p style={{ maxWidth: 760, marginTop: 20 }}>
-                A more dynamic layer for showcasing performance, motion, and
-                commercial rhythm.
+                          </span> ))}
+              </div>
+            </div>
+          </motion.div>
+        );
+})} </div>
+  </div>
+</section>
+<section className="section-shell-wrap">
+  <div className="section-accent accent-pink" />
+  <div className="section-shell">
+    <div className="momentum-grid">
+      <div>
+movement.</h2>
+<div className="eyebrow">Momentum</div>
+<div style={{ height: 16 }} />
+<h2>Visual systems that turn campaigns and launches into visible
+<p style={{ maxWidth: 760, marginTop: 20 }}>
+  A more dynamic layer for showcasing performance, motion, and
+commercial rhythm.
               </p>
-
               <div className="chart-grid">
                 <div className="chart-card">
                   <div className="chart-head">
@@ -426,33 +366,27 @@ export default function App() {
                   <div className="chart-box">
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={momentumData}>
-                        <defs>
-                          <linearGradient id="growthFill" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="5%" stopColor="#22d3ee" stopOpacity={0.45} />
-                            <stop offset="95%" stopColor="#22d3ee" stopOpacity={0} />
-                          </linearGradient>
-                        </defs>
-                        <CartesianGrid stroke="rgba(255,255,255,0.08)" vertical={false} />
-                        <XAxis
-                          dataKey="name"
-                          tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 12 }}
-                          axisLine={false}
-                          tickLine={false}
-                        />
-                        <YAxis hide />
-                        <Tooltip />
-                        <Area
-                          type="monotone"
-                          dataKey="growth"
-                          stroke="#22d3ee"
-                          fill="url(#growthFill)"
-                          strokeWidth={2.5}
-                        />
+y2="1">
+stopOpacity={0.45} />
+stopOpacity={0} />
+<defs>
+  <linearGradient id="growthFill" x1="0" y1="0" x2="0"
+    <stop offset="5%" stopColor="#22d3ee"
+    <stop offset="95%" stopColor="#22d3ee"
+  </linearGradient>
+</defs>
+<CartesianGrid stroke="rgba(255,255,255,0.08)"
+vertical={false} />
+"rgba(255,255,255,0.55)", fontSize: 12 }} axisLine={false} tickLine={false} />
+<XAxis dataKey="name" tick={{ fill:
+<YAxis hide />
+                             <Tooltip />
+                        <Area type="monotone" dataKey="growth" stroke="#22d3ee"
+fill="url(#growthFill)" strokeWidth={2.5} />
                       </AreaChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
-
                 <div className="chart-card">
                   <div className="chart-head">
                     <Disc3 size={18} />
@@ -461,29 +395,20 @@ export default function App() {
                   <div className="chart-box">
                     <ResponsiveContainer width="100%" height="100%">
                       <ReLineChart data={releaseWaveData}>
-                        <CartesianGrid stroke="rgba(255,255,255,0.08)" vertical={false} />
-                        <XAxis
-                          dataKey="name"
-                          tick={{ fill: "rgba(255,255,255,0.55)", fontSize: 12 }}
-                          axisLine={false}
-                          tickLine={false}
-                        />
+                        <CartesianGrid stroke="rgba(255,255,255,0.08)"
+vertical={false} />
+                        <XAxis dataKey="name" tick={{ fill:
+"rgba(255,255,255,0.55)", fontSize: 12 }} axisLine={false} tickLine={false} />
                         <YAxis hide />
                         <Tooltip />
-                        <Line
-                          type="monotone"
-                          dataKey="value"
-                          stroke="#d946ef"
-                          strokeWidth={3}
-                          dot={{ fill: "#22d3ee", strokeWidth: 0, r: 4 }}
-                        />
+                        <Line type="monotone" dataKey="value" stroke="#d946ef"
+strokeWidth={3} dot={{ fill: "#22d3ee", strokeWidth: 0, r: 4 }} />
                       </ReLineChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
               </div>
-            </div>
-
+</div>
             <div className="momentum-side">
               <div className="media-tile">
                 <div className="chart-head">
@@ -495,14 +420,12 @@ export default function App() {
                     <Play size={18} />
                   </div>
                 </div>
-              </div>
-
+</div>
               <div className="rollout-card">
                 <div className="chart-head">
                   <Rocket size={18} />
                   <span>Rollout system</span>
-                </div>
-
+                  </div>
                 <div className="rollout-stack">
                   <div className="rollout-item">
                     <div className="phase">Phase 01</div>
@@ -525,21 +448,18 @@ export default function App() {
             </div>
           </div>
         </div>
-      </section>
-
+</section>
       <section className="section-shell-wrap" id="sectors">
         <div className="section-accent accent-red" />
         <div className="section-shell">
           <div className="eyebrow">Sectors</div>
           <div style={{ height: 16 }} />
-          <h2>
-            Built to adapt across industries, categories, and business models.
-          </h2>
+          <h2>Built to adapt across industries, categories, and business
+models.</h2>
           <p style={{ maxWidth: 760, marginTop: 20 }}>
             A flexible structure designed to support different markets with
-            clarity and execution quality.
-          </p>
-
+clarity and execution quality.
+</p>
           <div className="sector-grid">
             {sectors.map((sector) => {
               const Icon = sector.icon;
@@ -548,46 +468,40 @@ export default function App() {
                   <div className="sector-visual cyan">
                     <div className="sector-icon">
                       <Icon size={34} />
+</div>
                     </div>
-                  </div>
-                  <div className="sector-title">{sector.title}</div>
-                </div>
-              );
-            })}
+            <div className="sector-title">{sector.title}</div>
           </div>
-        </div>
-      </section>
-
-      <section className="section-shell-wrap">
-        <div className="section-accent accent-amber" />
-        <div className="section-shell">
-          <div className="eyebrow">Capability Map</div>
-          <div style={{ height: 16 }} />
-          <h2>
-            An interactive model of how capabilities influence one another.
-          </h2>
-          <p style={{ maxWidth: 760, marginTop: 20 }}>
-            Move the controls and watch the system respond across connected
-            brand and growth dimensions.
+); })}
+    </div>
+  </div>
+</section>
+<section className="section-shell-wrap">
+  <div className="section-accent accent-amber" />
+  <div className="section-shell">
+    <div className="eyebrow">Capability Map</div>
+    <div style={{ height: 16 }} />
+    <h2>An interactive model of how capabilities influence one another.</h2>
+    <p style={{ maxWidth: 760, marginTop: 20 }}>
+      Move the controls and watch the system respond across connected
+brand and growth dimensions.
           </p>
-
           <div className="capability-grid">
             <div className="chart-card">
               <div className="chart-box tall">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={radarData} outerRadius="72%">
                     <PolarGrid stroke="rgba(255,255,255,0.12)" />
-                    <PolarAngleAxis
-                      dataKey="subject"
-                      tick={{ fill: "rgba(255,255,255,0.75)", fontSize: 12 }}
-                    />
-                    <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
-                    <Radar dataKey="value" stroke="#22d3ee" fill="#22d3ee" fillOpacity={0.28} />
+                    <PolarAngleAxis dataKey="subject" tick={{ fill:
+"rgba(255,255,255,0.75)", fontSize: 12 }} />
+                    <PolarRadiusAxis domain={[0, 100]} tick={false}
+axisLine={false} />
+                    <Radar dataKey="value" stroke="#22d3ee" fill="#22d3ee"
+fillOpacity={0.28} />
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
             </div>
-
             <div className="slider-grid">
               {sliders.map(({ key, label }) => (
                 <div key={key} className="slider-card">
@@ -598,22 +512,19 @@ export default function App() {
                   <input
                     type="range"
                     min={40}
-                    max={100}
+                     max={100}
                     value={controls[key]}
                     onChange={(e) =>
                       setControls((prev) => ({
                         ...prev,
                         [key]: Number(e.target.value),
                       }))
-                    }
-                  />
-                </div>
-              ))}
+} />
+</div> ))}
             </div>
           </div>
         </div>
       </section>
-
       <section className="section-shell-wrap">
         <div className="section-accent accent-white" />
         <div className="section-shell">
@@ -621,10 +532,9 @@ export default function App() {
           <div style={{ height: 16 }} />
           <h2>A structured path from insight to execution.</h2>
           <p style={{ maxWidth: 760, marginTop: 20 }}>
-            Each stage is designed to reduce noise, sharpen decisions, and improve
-            quality over time.
-          </p>
-
+            Each stage is designed to reduce noise, sharpen decisions, and
+improve quality over time.
+</p>
           <div className="process-grid">
             {processSteps.map((step) => {
               const Icon = step.icon;
@@ -636,91 +546,75 @@ export default function App() {
                   <div className="process-title">{step.title}</div>
                   <p>{step.description}</p>
                 </div>
-              );
-            })}
+); })}
           </div>
         </div>
-      </section>
-
+</section>
       <section className="section-shell-wrap" id="clients">
         <div className="section-accent accent-cyan" />
         <div className="section-shell">
           <div className="eyebrow">Selected Clients</div>
           <div style={{ height: 16 }} />
-          <h2>Trusted by brands across multiple industries and project types.</h2>
-          <p style={{ maxWidth: 760, marginTop: 20 }}>
-            A selection of companies and brands supported through strategy,
-            identity, digital presence, growth execution, and rollout thinking.
+<h2>Trusted by brands across multiple industries and project types.</h2>
+<p style={{ maxWidth: 760, marginTop: 20 }}>
+  A selection of companies and brands supported through strategy,
+identity, digital presence, growth execution, and rollout thinking.
           </p>
-
           <div className="client-marquee-mask">
             <div className="client-marquee">
               {data.clients.map((client, i) => (
                 <ClientTile key={`${client.name}-${i}`} client={client} />
-              ))}
-            </div>
+))} </div>
           </div>
         </div>
-      </section>
-
+</section>
       <section className="section-shell-wrap">
         <div className="section-accent accent-pink" />
         <div className="section-shell">
           <div className="why-grid">
             <div className="why-card">
               <div className="eyebrow">Why Alzarosa</div>
-              <div className="why-title">Integrated intelligence</div>
+              <div className="why-title">Strategy-first approach</div>
               <p>
-                Strategy, identity, interface, rollout logic, and commercial structure
-                working together instead of operating in isolation.
-              </p>
-            </div>
-
+                Strategy, identity, interface, rollout logic, and commercial
+structure working together instead of operating in isolation.
+</p> </div>
             <div className="why-card">
               <div className="eyebrow">Why Alzarosa</div>
-              <div className="why-title">Future-facing execution</div>
+              <div className="why-title">Execution excellence</div>
               <p>
                 A more modern way to build brand presence, digital experiences,
-                performance systems, and release momentum.
-              </p>
-            </div>
-
+performance systems, and release momentum.
+</p> </div>
             <div className="why-card">
               <div className="eyebrow">Why Alzarosa</div>
-              <div className="why-title">Immediate brand impact</div>
+              <div className="why-title">Performance-driven systems</div>
               <p>
-                A stronger visual and strategic standard designed to create instant
-                confidence, attention, and recall.
-              </p>
-            </div>
-          </div>
+                A stronger visual and strategic standard designed to create
+instant confidence, attention, and recall.
+</p> </div>
+             </div>
         </div>
-      </section>
-
+</section>
       <section className="section-shell-wrap" id="contact">
         <div className="section-accent accent-red" />
         <div className="section-shell">
           <div className="contact-grid">
             <div>
               <div className="eyebrow">Contact</div>
-              <div className="contact-title">
-                Let’s build the next version of your brand.
-              </div>
+<div className="contact-title">Let’s build something that performs.</div>
               <div className="contact-copy">
-                Strategy, identity, web experiences, performance marketing,
-                e-commerce systems, and launch execution.
+                Strategy, identity, web experiences, performance marketing, e-
+commerce systems, and launch execution.
               </div>
-            </div>
-
+</div>
             <div className="contact-card">
               <div className="contact-item">
                 <Mail size={18} />
                 <div>
                   <div className="micro-label">Email</div>
-                  <div className="contact-text">alzarosallc@gmail.com</div>
-                </div>
-              </div>
-
+<div className="contact-text">alzarosallc@gmail.com</div> </div>
+</div>
               <div className="contact-item">
                 <Phone size={18} />
                 <div>
@@ -733,6 +627,5 @@ export default function App() {
           </div>
         </div>
       </section>
-    </div>
-  );
+</div> );
 }
